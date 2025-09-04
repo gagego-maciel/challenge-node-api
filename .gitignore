@@ -1,0 +1,11 @@
+# Coverage
+coverage/
+
+# Node
+node_modules/
+
+# Drizzle cache/build (não migrations)
+drizzle/build/
+
+.env
+.env.test
