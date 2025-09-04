@@ -42,14 +42,6 @@ cd challenge-node-api
 npm install
 ```
 
-## 📂 Estrutura do Projeto
-
-src/
-├─ rotas/ # Endpoints da API
-├─ databases/ # Modelos schemas do SQL com o Drizzle
-├─ tests/ # Factories
-└─ server.ts # Ponto de entrada da aplicação
-
 ![Build](https://img.shields.io/github/actions/workflow/status/seuusuario/challenge-node-api/nodejs.yml?branch=main)
 ![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
