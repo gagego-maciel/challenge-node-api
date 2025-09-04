@@ -37,7 +37,7 @@ Uma API moderna construída com **Node.js**, **TypeScript** e **Drizzle ORM**, c
 1️⃣ Clone o repositório:
 
 ```bash
-git clone https://github.com/seuusuario/challenge-node-api.git
+git clone git@github.com:gagego-maciel/challenge-node-api.git
 cd challenge-node-api
 npm install
 ```
