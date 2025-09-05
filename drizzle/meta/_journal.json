@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1756846015734,
-      "tag": "0000_chilly_blur",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1756848567909,
-      "tag": "0003_groovy_maria_hill",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1756904761107,
-      "tag": "0004_chemical_ozymandias",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1756913328894,
-      "tag": "0005_rare_rhino",
+      "when": 1757010326597,
+      "tag": "0000_busy_black_bird",
       "breakpoints": true
     }
   ]

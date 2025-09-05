@@ -8,6 +8,7 @@ import { getCourseByIdRoute } from './rotas/GetCourseById/get-course-by-id.ts';
 import { createUsersRote } from './rotas/create-users.ts';
 import { getAllUsersRote } from './rotas/get-all-users.ts';
 import { createEnrollmentsRoute } from './rotas/create-enrollments.ts';
+import { loginRote } from './rotas/Login/login.ts';
 import {
   validatorCompiler,
   serializerCompiler,
@@ -41,5 +42,6 @@ server.register(deleteCourseRote);
 server.register(createUsersRote);
 server.register(getAllUsersRote);
 server.register(createEnrollmentsRoute);
+server.register(loginRote);
 
 export { server };

@@ -1,21 +1,24 @@
-import { test, expect } from 'vitest';
-import request from 'supertest';
-import { server } from '../../app.ts';
-import { makeCource } from '../../tests/factories/make-course.ts';
-import { randomUUID } from 'node:crypto';
+import { test, expect } from 'vitest'
+import request from 'supertest'
+import { server } from '../../app.ts'
+import { makeCource } from '../../tests/factories/make-course.ts'
+import { randomUUID } from 'node:crypto'
+import { makeAuthenticatedUser } from '../../tests/factories/make-user.ts'
 
 test('get all courses', async () => {
-  await server.ready();
+  await server.ready()
 
-  const titleId = randomUUID();
+  const titleId = randomUUID()
 
-  await makeCource(titleId);
+  await makeCource(titleId)
 
-  const response = await request(server.server).get(
-    `/courses?search=${titleId}`,
-  );
+  const { token } = await makeAuthenticatedUser('student')
 
-  expect(response.status).toEqual(200);
+  const response = await request(server.server)
+    .get(`/courses?search=${titleId}`)
+    .set('Authorization', `Bearer ${token}`)
+
+  expect(response.status).toEqual(200)
   expect(response.body).toEqual({
     total: 1,
     courses: [
@@ -26,5 +29,5 @@ test('get all courses', async () => {
         enrollments: 0,
       },
     ],
-  });
-});
+  })
+})

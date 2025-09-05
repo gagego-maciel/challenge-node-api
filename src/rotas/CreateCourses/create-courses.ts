@@ -1,17 +1,19 @@
-import { z } from 'zod';
-import { db } from '../../database/client.ts';
-import { courses } from '../../database/schema.ts';
-import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
+import { z } from 'zod'
+import { db } from '../../database/client.ts'
+import { courses } from '../../database/schema.ts'
+import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
+import { checkRequestJWT } from '../hooks/check-request-jwt.ts'
+import { checkUserRole } from '../hooks/check-user-role.ts'
 
 export const createCourseRoute: FastifyPluginAsyncZod = async (server) => {
   server.post(
     '/courses',
     {
+      preHandler: [checkRequestJWT, checkUserRole('manager')],
       schema: {
         tags: ['Cursos'],
         summary: 'Criar um novo curso.',
-        description:
-          'Essa rota recebe um titulo e uma descrição para criar um novo curso.',
+        description: 'Essa rota recebe um titulo e uma descrição para criar um novo curso.',
         body: z.object({
           title: z.string().min(1, { message: 'O título é obrigatório' }),
           description: z.string().optional(),
@@ -31,18 +33,16 @@ export const createCourseRoute: FastifyPluginAsyncZod = async (server) => {
       },
     },
     async (request, reply) => {
-      const courseId = crypto.randomUUID();
-      const title = request.body.title;
-      const description = request.body.description;
+      const courseId = crypto.randomUUID()
+      const title = request.body.title
+      const description = request.body.description
 
       const result = await db
         .insert(courses)
         .values({ id: courseId, title: title, description: description })
-        .returning();
+        .returning()
 
-      return reply
-        .status(201)
-        .send({ courses: result, message: 'Criado com sucesso!' });
+      return reply.status(201).send({ courses: result, message: 'Criado com sucesso!' })
     },
-  );
-};
+  )
+}
